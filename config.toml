@@ -1,0 +1,16 @@
+base_url = "https://rypz.io"
+
+title = "rypz.io"
+
+compile_sass = false
+
+minify_html = true
+
+build_search_index = false
+
+[markdown]
+extra_syntaxes_and_themes = ["highlight_themes"]
+highlight_code = true
+highlight_theme = "monochrome"
+
+[extra]
