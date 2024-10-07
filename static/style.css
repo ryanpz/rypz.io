@@ -85,7 +85,7 @@ table {
   width: 100%;
 }
 
-pre[class^="language-"] {
+pre:has(> code) {
   font-size: 0.90em;
   padding: 0.7rem 0 0.7rem 0.7rem;
   overflow-x: auto;
