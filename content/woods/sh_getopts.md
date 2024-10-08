@@ -22,7 +22,7 @@ getopts OptionString NAME [ARGS...]
 * **OptionString**: a series of letters defining valid options.
     * To define an option as one that **requires an argument**, add a colon `[:]` directly after the option character
 * **NAME**: `getopts` sets this variable to the option character that was found
-* **ARGS**: tell `getopts` to parse **ARGS** for options instead of the positional parameters passed to the shell *(mostly used for debugging)*
+* **ARGS**: tell `getopts` to parse **ARGS** for options instead of the arguments passed to the script *(mostly used for debugging)*
 
 ## Typical Usage
 ```sh
@@ -37,15 +37,15 @@ done
 shift $((OPTIND-1))
 ```
 
-Each time `getopts` is invoked, it places:
+Each time `getopts` is invoked, it sets:
 
-- the option character it found in **NAME**
-- the index of the next argument to be processed in **OPTIND**
-- the option's argument in **OPTARG** if the option requires one
+- **NAME** to the option character it found
+- **OPTARG** to the option's argument, if the option requires one
+- **OPTIND** to the index of the next argument to be processed
 
-When there are no more options found, `getopts` exits with a nonzero value. **OPTIND** is set to the index of the first non-option argument.
+When there are no more options to process, `getopts` exits with a nonzero value, and **OPTIND** is set to the index of the first non-option argument.
 
-If the program also accepts non-option arguments, it's idiomatic to write the following after parsing options:
+If the program also accepts non-option arguments, it's idiomatic to add the following after parsing options:
 ```sh
 shift $((OPTIND-1))
 ```
