@@ -26,7 +26,7 @@ for i in $@; do
 done
 ```
 
-Executing it will output:
+Outputs:
 
 ```
 $ ./foo.sh a "b c d" e
@@ -69,7 +69,7 @@ for i in "$@"; do
 done
 ```
 
-Output:
+Outputs:
 
 ```
 $ ./bar.sh a "b c d" e
