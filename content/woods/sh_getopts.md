@@ -11,12 +11,18 @@ utility_name [-a] [-b] [-c option_argument]
 ```
 > *Utility Argument Syntax*: An option is identified by a minus [-] sign followed by a single letter, along with an argument if the option requires one.
 
-In POSIX shell scripts, these options can be parsed using the `getopts` command.
+In POSIX shell scripts, these options can be parsed using the builtin `getopts` command.
 
-## `getopts` Syntax
+## Syntax
 ```sh
 getopts OptionString NAME [ARGS...]
 ```
+
+## Parameters
+* **OptionString**: a series of letters defining valid options.
+    * To define an option as one that **requires an argument**, add a colon `[:]` directly after the option character
+* **NAME**: `getopts` sets this variable to the option character that was found
+* **ARGS**: tell `getopts` to parse **ARGS** for options instead of the positional parameters passed to the shell *(mostly used for debugging)*
 
 ## Typical Usage
 ```sh
@@ -31,19 +37,11 @@ done
 shift $((OPTIND-1))
 ```
 
-## Parameters
-* **OptionString**: a series of letters defining valid options.
-    * To define an option as one that **requires an argument**, add a colon `[:]` directly after the option character
-* **NAME**: `getopts` sets this variable to the option character that was found
-* **ARGS**: tell `getopts` to parse **ARGS** for options instead of the positional parameters passed to the shell *(mostly used for debugging)*
-
-`getopts` is a command built into POSIX shells that is used to parse the parameters passed to the shell for valid options and option arguments. 
-
 Each time `getopts` is invoked, it places:
 
-1. the option character it found in **NAME**
-2. the index of the next argument to be processed in **OPTIND**
-3. the option's argument in **OPTARG** if the option requires one
+- the option character it found in **NAME**
+- the index of the next argument to be processed in **OPTIND**
+- the option's argument in **OPTARG** if the option requires one
 
 When there are no more options found, `getopts` exits with a nonzero value. **OPTIND** is set to the index of the first non-option argument.
 
