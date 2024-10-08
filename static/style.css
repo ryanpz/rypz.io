@@ -30,6 +30,22 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: InterVariable;
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/fonts/inter/InterVariable.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: InterVariable;
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/fonts/inter/InterVariable-Italic.woff2') format('woff2');
+}
+
 .default-theme {
   --bg: #0e0e0e;
   --fg: #a3a3a3;
@@ -45,12 +61,15 @@ html, body {
 
 body {
   margin: 0;
-  font-family: Hack, monospace;
+  font-family: InterVariable, -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  line-height: 1.5;
 }
 
 header {
   padding: 0.7rem;
   background: rgba(0,0,0,0.1);
+  font-family: Hack, monospace;
+  line-height: initial;
 }
 
 nav > ul {
@@ -65,15 +84,19 @@ main {
   margin: 0.8rem;
 }
 
-li {
-  margin-top: 0.3rem;
+main ol li, main ul li {
+  margin: 0.3rem 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: Hack, monospace;
+  line-height: 1.2;
 }
 
 a {
   text-decoration: none;
   color: var(--fg);
   border-bottom: 3px solid var(--fg);
-  line-height: 1.3;
 }
 
 a:hover, a:focus {
@@ -89,6 +112,7 @@ pre:has(> code) {
   font-size: 0.90em;
   padding: 0.7rem 0 0.7rem 0.7rem;
   overflow-x: auto;
+  line-height: initial;
 }
 
 code {
@@ -132,10 +156,6 @@ blockquote {
   font-weight: bold;
   font-size: 1.1rem;
   padding: 0.25rem;
-}
-
-.title {
-  margin: 2rem 0 2.5rem 0;
 }
 
 .post-list {
