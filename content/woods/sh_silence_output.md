@@ -6,7 +6,7 @@ date = 2024-03-06
 It's often useful to test the exit codes of commands to make decisions. For example,
 
 ```sh
-if which vi; then
+if command -v vi; then
   printf 'vi is installed\n'
 fi
 ```
@@ -17,7 +17,7 @@ which is usually not what we want.
 To silence `STDOUT`, we can redirect it to `/dev/null`, the null device.
 
 ```sh
-which vi >/dev/null
+command -v vi >/dev/null
 ```
 
 We _could_ do the same for `STDERR`, but it's idiomatic to redirect `STDERR` to `STDOUT` instead, thereby
@@ -33,7 +33,7 @@ redirected to `m`.
 The example then becomes
 
 ```sh
-if which vi >/dev/null 2>&1; then
+if command -v vi >/dev/null 2>&1; then
   printf 'vi is installed\n'
 fi
 ```
