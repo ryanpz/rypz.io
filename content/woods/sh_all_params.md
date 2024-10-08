@@ -8,7 +8,7 @@ The POSIX shell language provides two _special parameters_ to get all positional
 1. `$@`
 2. `$*`
 
-Both behave similarly when not double-quoted: field splitting is performed on the each parameter. This means that even if a positional argument is quoted, it'll still be split up by IFS—which is whitespace by default—into separate fields. For example,
+Both behave similarly when not double-quoted: field splitting is performed on each parameter. This means that even if an argument is quoted, it'll still be split up by IFS—which is whitespace by default—into separate fields. For example,
 
 ```sh
 #!/bin/sh
