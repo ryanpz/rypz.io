@@ -1,0 +1,40 @@
++++
+title = "Special Characters in Basic Regular Expressions"
+date = 2022-08-21
++++
+
+Special characters in POSIX Basic Regular Expressions (BREs) have **special properties when within certain contexts**.
+
+They become _ordinary characters_ (matching themselves) when outside of these contexts, or when _escaped_ with a preceding `\`.
+
+## Special Characters
+
+| Character | Special Property                                                                           |
+|-----------|--------------------------------------------------------------------------------------------|
+| `.`       | matches _any_ single character                                                             |
+| `[`       | denotes the start of a bracket expression                                                  |
+| `\`       | escapes the following special character into an ordinary character                         |
+| `*`       | matches the preceding single character/subexpression/back-reference _0+ consecutive times_ |
+| `^`       | limits an entire BRE to match from the _beginning_ of a string                             |
+| `$`       | limits an entire BRE to match to the _end_ of the string                                   |
+
+
+## Contexts
+
+| Character(s) | Are Special when...                                                    |
+|--------------|------------------------------------------------------------------------|
+| `.` `[` `\`  | outside of bracket expressions                                         |
+| `*`          | outside of bracket expressions, and _not first_ in a BRE/subexpression |
+| `^`          | first in a BRE (a _left anchor_)                                       |
+| `$`          | last in a BRE (a _right anchor_)                                       |
+
+## Notes:
+
+* All other characters are considered ordinary characters.
+
+* Escaping an ordinary character produces undefined results. 
+
+* Shorthand character classes (`\w`, `\s`, `\<`, `\>`, etc.) are _GNU extensions_ and are not part of the POSIX Regular Expression specification.
+
+---
+[The Open Group Base Specifications Issue 7 (9. Regular Expressions)](https://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap09.html), [GNU sed regular expression extensions](https://www.gnu.org/software/sed/manual/html_node/regexp-extensions.html#regexp-extensions)
