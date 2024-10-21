@@ -6,7 +6,7 @@ SERVE_PORT ?= 8085
 
 .PHONY: build
 build:
-	$(CONTAINER_RUNNER) run \
+	$(CONTAINER_RUNNER) run --rm \
 		--security-opt label:disable \
 		-v $(shell pwd):/app \
 		--workdir /app \
@@ -15,7 +15,7 @@ build:
 
 .PHONY: serve
 serve:
-	$(CONTAINER_RUNNER) run \
+	$(CONTAINER_RUNNER) run --rm \
 		--security-opt label:disable \
 		-v $(shell pwd):/app \
 		--workdir /app \
