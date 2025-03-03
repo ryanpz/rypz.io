@@ -1,12 +1,12 @@
-include .env
+-include .env
 
-CONTAINER_RUNNER ?= podman
+CONTAINER_TOOL ?= podman
 ZOLA_VERSION ?= v0.19.2
 SERVE_PORT ?= 8085
 
 .PHONY: build
 build:
-	$(CONTAINER_RUNNER) run --rm \
+	$(CONTAINER_TOOL) run --rm \
 		--security-opt label:disable \
 		-v $(shell pwd):/app \
 		--workdir /app \
@@ -15,7 +15,7 @@ build:
 
 .PHONY: serve
 serve:
-	$(CONTAINER_RUNNER) run --rm \
+	$(CONTAINER_TOOL) run --rm \
 		--security-opt label:disable \
 		-v $(shell pwd):/app \
 		--workdir /app \
