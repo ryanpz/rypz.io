@@ -3,11 +3,11 @@ title = "Using Parameter Expansion in POSIX Shell"
 date = 2022-08-21
 +++
 
-In POSIX shell scripting, we can use parameter expansion to reference a variable
+In POSIX shell scripts, we can use parameter expansion to reference a variable
 
 ```sh
 message="hello"
-echo ${message}
+printf '%s\n' "${message}"
 ```
 
 The usefulness of this syntax is in its variations that handle variables when null/not null:
@@ -18,6 +18,76 @@ The usefulness of this syntax is in its variations that handle variables when nu
 | `${var:=word}` | use _word_ and set _var_ to _word_ if _var_ unset/null |
 | `${var:+word}` | use _word_ if _var_ set and not null                   |
 | `${var:?word}` | exit with error and print _word_ if _var_ unset/null   |
+
+Another useful set of variations involve prefix/suffix deletion of a variable's value:
+
+| Form          | Meaning                                                    |
+|---------------|------------------------------------------------------------|
+| `${var#pat}`  | remove the smallest prefix of _var_ matching pattern _pat_ |
+| `${var##pat}` | remove the largest prefix of _var_ matching pattern _pat_  |
+| `${var%pat}`  | remove the smallest suffix of _var_ matching pattern _pat_ |
+| `${var%%pat}` | remove the largest suffix of _var_ matching pattern _pat_  |
+
+Examples:
+
+```sh
+#!/bin/sh
+#
+# baz.sh
+
+var=
+
+printf 'var: "%s"\n' "$var"
+printf 'using fallback value "%s"\n' "${var:-"some_fallback_value"}"
+printf 'var: "%s"\n' "$var"
+printf 'setting var to value "%s"\n' "${var:="some_value"}"
+printf 'var: "%s"\n' "$var"
+printf 'using "%s" because var is set\n\n' "${var:+"another_value"}"
+
+var='/duck/duck/duck/goose/goose/goose'
+
+printf 'original var:            %s\n' "$var"
+printf 'smallest prefix removed: %s\n' "${var#*/duck}"
+printf 'largest prefix removed:  %s\n' "${var##*/duck}"
+printf 'smallest suffix removed: %s\n' "${var%/goose*}"
+printf 'largest suffix removed:  %s\n\n' "${var%%/goose*}"
+
+var='/home/user/.local/bin/baz.sh'
+
+printf 'filepath: %s\n' "$var"
+printf 'dirname:  %s\n' "${var%/*}"
+printf 'basename: %s\n\n' "${var##*/}"
+
+var=
+
+printf 'this should not print: "%s"\n' "${var:?"var is unset or null"}"
+```
+
+Output:
+
+```
+$ ./baz.sh
+var: ""
+using fallback value "some_fallback_value"
+var: ""
+setting var to value "some_value"
+var: "some_value"
+using "another_value" because var is set
+
+original var:            /duck/duck/duck/goose/goose/goose
+smallest prefix removed: /duck/duck/goose/goose/goose
+largest prefix removed:  /goose/goose/goose
+smallest suffix removed: /duck/duck/duck/goose/goose
+largest suffix removed:  /duck/duck/duck
+
+filepath: /home/user/.local/bin/baz.sh
+dirname:  /home/user/.local/bin
+basename: baz.sh
+
+./baz.sh: 30: var: var is unset or null
+$ printf 'exit code: %s\n' $?
+exit code: 2
+```
 
 ---
 [The Open Group Base Specifications Issue 7 (2.6.2 Parameter Expansion)](https://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html#tag_18_06_02)
