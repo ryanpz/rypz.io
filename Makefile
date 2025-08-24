@@ -1,7 +1,7 @@
 -include .env
 
 CONTAINER_TOOL ?= podman
-ZOLA_VERSION ?= v0.19.2
+ZOLA_VERSION ?= v0.21.0
 SERVE_PORT ?= 8085
 
 .PHONY: build
