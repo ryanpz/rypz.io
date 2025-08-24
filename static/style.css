@@ -47,10 +47,10 @@
 }
 
 .default-theme {
-  --bg: #0e0e0e;
-  --fg: #a3a3a3;
-  --code-bg: #000000;
-  --code-fg: #dadada;
+  --bg: #000000;
+  --fg: #ffffff;
+  --code-bg: #0e0e0e;
+  --code-fg: #ffffff;
 }
 
 html, body {
@@ -113,6 +113,8 @@ pre:has(> code) {
   padding: 0.7rem 0 0.7rem 0.7rem;
   overflow-x: auto;
   line-height: initial;
+  background: var(--code-bg);
+  color: var(--code-fg);
 }
 
 code {
