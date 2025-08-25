@@ -2,5 +2,5 @@
 title = "contact"
 +++
 
-* **email**: ryan@rypz.io
+* **email**: hello@rypz.io
 * **github**: [ryanpz](https://github.com/ryanpz)
