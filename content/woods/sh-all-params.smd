@@ -1,8 +1,11 @@
-+++
-title = "Getting All Positional Parameters in POSIX Shell"
-date = 2022-08-21
-+++
-
+---
+.title = "Getting All Positional Parameters in POSIX Shell",
+.date = @date("2022-08-21T00:00:01"),
+.author = "me",
+.layout = "post.shtml",
+.draft = false,
+--- 
+ 
 The POSIX shell language provides two _special parameters_ to get all positional parameters that the script was invoked with:
 
 1. `$@`
@@ -92,3 +95,5 @@ $
 
 ---
 [The Open Group Base Specifications Issue 7 (2.5.2 Special Parameters)](https://pubs.opengroup.org/onlinepubs/9699919799/utilities/V3_chap02.html#tag_18_05_02)
+
+

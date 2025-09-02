@@ -1,0 +1,17 @@
+#!/bin/sh
+
+WOODS_DIR="${WOODS_DIR:-$PWD/content/woods}"
+
+[ -f "$WOODS_DIR"/new-post.smd ] && exit 0
+
+timestamp="$(date '+%FT%T')"
+
+cat >"$WOODS_DIR"/new-post.smd <<EOM
+---
+.title = "New Post",
+.date = @date("$timestamp"),
+.author = "me",
+.layout = "post.shtml",
+.draft = true,
+--- 
+EOM

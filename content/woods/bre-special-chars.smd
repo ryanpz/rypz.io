@@ -1,7 +1,10 @@
-+++
-title = "Special Characters in Basic Regular Expressions"
-date = 2022-08-21
-+++
+---
+.title = "Special Characters in Basic Regular Expressions",
+.date = @date("2022-08-21T00:00:02"),
+.author = "me",
+.layout = "post.shtml",
+.draft = false,
+--- 
 
 Special characters in POSIX Basic Regular Expressions (BREs) have **special properties when within certain contexts**.
 

@@ -1,7 +1,10 @@
-+++
-title = "Silencing All Output of a Command in POSIX shell"
-date = 2024-03-06
-+++
+---
+.title = "Silencing All Output of a Command in POSIX shell",
+.date = @date("2024-03-06T00:00:00"),
+.author = "me",
+.layout = "post.shtml",
+.draft = false,
+--- 
 
 It's often useful to test the exit codes of commands to make decisions. For example,
 
@@ -23,7 +26,7 @@ command -v vi >/dev/null
 We _could_ do the same for `STDERR`, but it's idiomatic to redirect `STDERR` to `STDOUT` instead, thereby
 redirecting both outputs to `/dev/null`. This is done using the `>&` redirection operator.
 
-```txt
+```
 [n]>&[m]
 ```
 

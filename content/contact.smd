@@ -1,0 +1,10 @@
+---
+.title = "contact",
+.date = @date("2025-08-24T00:00:00"),
+.author = "me",
+.layout = "post.shtml",
+.draft = false,
+--- 
+
+* **email**: hello@rypz.io
+* **github**: [ryanpz](https://github.com/ryanpz)

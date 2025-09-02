@@ -1,0 +1,17 @@
+Site {
+    .title = "rypz.io",
+    .host_url = "https://rypz.io",
+    .content_dir_path = "content",
+    .layouts_dir_path = "layouts",
+    .assets_dir_path = "assets",
+    .static_assets = [
+        "favicon.ico",
+        "robots.txt",
+        "fonts/hack/hack-bold-subset.woff2",
+        "fonts/hack/hack-bolditalic-subset.woff2",
+        "fonts/hack/hack-italic-subset.woff2",
+        "fonts/hack/hack-regular-subset.woff2",
+        "fonts/inter/InterVariable-Italic.woff2",
+        "fonts/inter/InterVariable.woff2",
+    ],
+}

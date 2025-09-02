@@ -1,0 +1,12 @@
+<extend template="base.shtml">
+<head id="head"></head>
+<main id="main">
+  <div style="display: flex; justify-content: center; line-height: initial;">
+    <code style="white-space: pre-wrap; background: none; color: var(--fg); font-weight: bold;">
+  ___
+ {o,o}
+ /)  )
+--"-"--
+    </code>
+  </div>
+</main>

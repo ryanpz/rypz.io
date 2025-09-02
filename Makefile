@@ -1,28 +1,43 @@
+-include .env.public
 -include .env
 
-CONTAINER_TOOL ?= podman
-ZOLA_VERSION ?= v0.21.0
+ZINE_VERSION ?= 0.11.1
 SERVE_PORT ?= 8085
 
-.PHONY: build
-build:
-	$(CONTAINER_TOOL) run --rm \
-		--security-opt label:disable \
-		-v $(shell pwd):/app \
-		--workdir /app \
-		ghcr.io/getzola/zola:$(ZOLA_VERSION) \
-		build
+ARCH := $(shell uname -m)
+ifeq ($(ARCH), arm64)
+	ARCH := aarch64
+endif
+
+OS := $(shell uname | tr '[:upper:]' '[:lower:]')
+ifeq ($(OS), linux)
+	OS := linux-musl
+endif
+
+ZINE_URL = https://github.com/kristoff-it/zine/releases/download/v$(ZINE_VERSION)/$(ARCH)-$(OS).tar.xz
+TOOLS_DIR := tools
+ZINE := $(TOOLS_DIR)/zine
+
+WOODS_DIR := content/woods
 
 .PHONY: serve
-serve:
-	$(CONTAINER_TOOL) run --rm \
-		--security-opt label:disable \
-		-v $(shell pwd):/app \
-		--workdir /app \
-		-p $(SERVE_PORT):$(SERVE_PORT) \
-		-p 1024:1024 \
-		ghcr.io/getzola/zola:$(ZOLA_VERSION) \
-		serve \
-		--interface 0.0.0.0 \
-		--port $(SERVE_PORT) \
-		--base-url 0.0.0.0
+serve: $(ZINE)
+	$(ZINE) --port $(SERVE_PORT) --drafts
+
+.PHONY: build
+build: $(ZINE)
+	rm -rf public
+	$(ZINE) release
+
+$(ZINE):
+	mkdir -p $(TOOLS_DIR)
+	curl -Lo $(TOOLS_DIR)/zine.tar.xz $(ZINE_URL)
+	tar -xvf $(TOOLS_DIR)/zine.tar.xz -C $(TOOLS_DIR)
+	rm -rf $(TOOLS_DIR)/zine.tar.xz
+
+post:
+	WOODS_DIR=$(WOODS_DIR) $(TOOLS_DIR)/create-post
+
+.PHONY: clean
+clean:
+	rm -rf public tools/zine* content/woods/new-post*

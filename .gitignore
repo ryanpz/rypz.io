@@ -1,3 +1,5 @@
 public
 .env*
-!.env.example
+!.env.public
+tools/zine*
+content/woods/new-post*

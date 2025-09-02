@@ -1,7 +1,10 @@
-+++
-title = "Using Parameter Expansion in POSIX Shell"
-date = 2022-08-21
-+++
+---
+.title = "Using Parameter Expansion in POSIX Shell",
+.date = @date("2022-08-21T00:00:00"),
+.author = "me",
+.layout = "post.shtml",
+.draft = false,
+--- 
 
 In POSIX shell scripts, we can use parameter expansion to reference a variable
 

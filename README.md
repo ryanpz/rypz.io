@@ -4,12 +4,14 @@ My personal website
 
 ## Building
 
-This project is built using [zola](https://www.getzola.org/). The following `make` targets are provided for convenience:
+This project is built using [zine](https://zine-ssg.io/). The following `make` targets are provided for convenience:
 
-- `build`: builds the whole site in a deployment-ready `./public` directory
-- `serve`: serves the site locally at `0.0.0.0:8085` with live reloading
+- `build`: builds the whole site into a deployment-ready `./public` directory
+- `serve`: serves the site locally at `localhost:8085` with live reloading
+- `post`: creates a blank post (`content/woods/new-post.smd`) with required frontmatter
+- `clean`: removes temporary/ignored files
 
-These targets are configured to use the [official zola container images](https://github.com/getzola/zola/pkgs/container/zola). If you're using a container tool that isn't `podman`, you can configure `make` to use a different one by defining `CONTAINER_TOOL` in a `.env` file placed in this repo's root ([example](./.env.example)).
+Where necessary, these targets automatically download and use a repo-local copy of zine from the [official releases](https://github.com/kristoff-it/zine/releases), selecting the appropriate version, architecture and OS.
 
 ## License
 
