@@ -4,6 +4,13 @@ on:
   push:
     branches:
       - main
+    paths-ignore:
+      - 'tools/**'
+      - '.editorconfig'
+      - 'LICENSE'
+      - 'Makefile'
+      - 'README.md'
+
 env:
     PROJECT_NAME: rypz
 
