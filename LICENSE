@@ -10,20 +10,20 @@ Copyright: 2024, Ryan Perez <ryan@rypz.io>
 License: 0BSD
 
 Files:
- ./content/*
+ content/*
 Comment: rypz.io written work
 Copyright: 2024, Ryan Perez <ryan@rypz.io>
 License: CC-BY-SA-4.0
 
 Files:
- ./static/fonts/hack/*
+ assets/fonts/hack/*
 Comment: Hack font
 Copyright: 2018, Source Foundry Authors
   2003, Bitstream Inc.
 License: MIT and Bitstream Vera Fonts Copyright
 
 Files:
- ./static/fonts/inter/*
+ assets/fonts/inter/*
 Comment: Inter font
 Copyright: 2016, The Inter Project Authors (https://github.com/rsms/inter)
 License: OFL-1.1
