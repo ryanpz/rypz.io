@@ -1,0 +1,34 @@
+name: cloudflare pages
+
+on:
+  push:
+    branches:
+      - main
+env:
+    PROJECT_NAME: rypz
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Get Zine Version
+        id: zine-version
+        run: |
+          cat .env.public >> $GITHUB_OUTPUT
+
+      - name: Setup Zine
+        uses: kristoff-it/setup-zine@v1
+        with:
+          version: v${{ steps.zine-version.outputs.ZINE_VERSION }}
+          
+      - name: Build
+        run: zine release
+          
+      - name: Deploy
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy public/ --project-name=${{ env.PROJECT_NAME }}
