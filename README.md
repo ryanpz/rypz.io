@@ -9,7 +9,7 @@ This project is built using [zine](https://zine-ssg.io/). The following `make` t
 - `build`: builds the whole site into a deployment-ready `./public` directory
 - `serve`: serves the site locally at `localhost:8085` with live reloading
 - `post`: creates a blank post (`content/woods/new-post.smd`) with required frontmatter
-- `clean`: removes temporary/ignored files
+- `clean`: removes temporary files created by the above targets
 
 Where necessary, these targets automatically download and use a repo-local copy of zine from the [official releases](https://github.com/kristoff-it/zine/releases), selecting the appropriate version, architecture and OS.
 
